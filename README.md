@@ -49,6 +49,9 @@ Create a .env file by copying the provided .env.sample file. This file will hold
 cp .env.sample .env
 ```
 
+```sh
+cp .env.config.sample .env
+```
 ### 5. Run Database Migrations
 
 Use Alembic to run database migrations. You can create a new migration and apply it or just apply existing migrations.
