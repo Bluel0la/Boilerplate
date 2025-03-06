@@ -8,6 +8,7 @@ from jose import jwt
 from fastapi.security import OAuth2PasswordBearer
 from dotenv import load_dotenv
 import os
+blacklisted_tokens = set()
 
 
 load_dotenv(".env")
@@ -77,3 +78,9 @@ def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(
         raise credentials_exception
     
     return user
+
+
+@auth.post("/logout")
+def logout(token: str = Depends(oauth2_scheme)):
+    blacklisted_tokens.add(token)
+    return {"message": "Logged out successfully"}
